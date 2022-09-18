@@ -1,15 +1,19 @@
 {
-  "name": "typescript-template",
+  "name": "@leumasme/parallelizer",
   "version": "1.0.0",
   "description": "A Template for a generic TypeScript project",
   "main": "build/index.js",
   "scripts": {
     "build": "npx tsc",
     "start": "npx tsc && node build/index.js",
-    "dev": "npx tsnd --respawn --clear src/index.ts"
+    "dev": "npx tsnd --respawn --clear src/index.ts",
+    "prepack": "npx tsc"
   },
-  "author": "Temm",
+  "author": "leumasme",
   "license": "ISC",
+  "files": [
+    "build"
+  ],
   "devDependencies": {
     "@types/node": "^16.11.59",
     "ts-node-dev": "^1.1.6",

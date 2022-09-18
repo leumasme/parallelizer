@@ -1,2 +1,3 @@
-var hello: string = "Hello, World!";
+export var hello: string = "Hello, World!";
 console.log(hello);
+
