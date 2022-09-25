@@ -40,7 +40,7 @@ export class Parallelizer<T> extends (EventEmitter as { new <T>(): TypedEmitter<
     private taskFinished() {
         this.completed++;
 
-        if (this.started - this.completed < this.limit) {
+        if (this.started < this.limit) {
             this.executeNth(this.started);
         }
         if (this.completed == this.limit) {
