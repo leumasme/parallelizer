@@ -1,7 +1,7 @@
 {
     "name": "@leumasme/parallelizer",
     "version": "1.0.0",
-    "description": "A Template for a generic TypeScript project",
+    "description": "Run async functions in a pseudo-threadpool",
     "main": "build/index.js",
     "scripts": {
         "build": "npx tsc",
