@@ -1,15 +1,17 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
+        "target": "ES2015",
+        "module": "ES2015",
         "moduleResolution": "node",
         "strict": true,
         "skipLibCheck": false,
-        "importHelpers": true,
         "removeComments": true,
-        "esModuleInterop": true,
+        "esModuleInterop": false,
         "pretty": true,
-        "outDir": "dist",
+        "outDir": "build",
         "rootDir": ".",
+    },
+    "ts-node": {
+        "esm": true
     },
 }
