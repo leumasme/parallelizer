@@ -20,6 +20,7 @@ export class Parallelizer<T> extends (EventEmitter as { new <T>(): TypedEmitter<
         super()
     };
     start() {
+        if (this.started > 0) throw new Error("Already started");
         for (let i = 0; i < Math.min(this.parallelism, this.limit); i++) {
             this.executeNth(i);
         }
