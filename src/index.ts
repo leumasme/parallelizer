@@ -11,8 +11,13 @@ export class Parallelizer<T> extends (EventEmitter as { new <T>(): TypedEmitter<
     results: T[] = [];
     completed = 0;
     started = 0;
+    stopped = false;
     constructor(
         public readonly parallelism: number,
+        /**
+         * The limit how how many times to run `execute` in total.
+         * To run until `stop()` is called, pass Infinity.
+         */
         public readonly limit: number,
         private readonly execute: (i: number) => Promise<T>,
         private readonly keepData = true
@@ -25,12 +30,19 @@ export class Parallelizer<T> extends (EventEmitter as { new <T>(): TypedEmitter<
             this.executeNth(i);
         }
     }
+    /**
+     * Stop the Parallelizer, preventing any new tasks from being started
+     * Existing tasks will still finish.
+     */
+    stop() {
+        this.stopped = true;
+    }
     private executeNth(i: number) {
         let exec = this.execute(i);
         this.started++;
         exec.then((data) => {
             if (this.keepData) this.results.push(data);
-            
+
             this.emit("data", data, i);
             this.taskFinished()
         }).catch((e) => {
@@ -40,6 +52,13 @@ export class Parallelizer<T> extends (EventEmitter as { new <T>(): TypedEmitter<
     }
     private taskFinished() {
         this.completed++;
+
+        if (this.stopped) {
+            if (this.completed == this.started) {
+                this.finalize();
+            }
+            return;
+        }
 
         if (this.started < this.limit) {
             this.executeNth(this.started);
