@@ -37,6 +37,9 @@ export class Parallelizer<T> extends (EventEmitter as { new <T>(): TypedEmitter<
     stop() {
         this.stopped = true;
     }
+    hasRunningTasks() {
+        return this.started > this.completed;
+    }
     private executeNth(i: number) {
         let exec = this.execute(i);
         this.started++;
@@ -54,7 +57,7 @@ export class Parallelizer<T> extends (EventEmitter as { new <T>(): TypedEmitter<
         this.completed++;
 
         if (this.stopped) {
-            if (this.completed == this.started) {
+            if (!this.hasRunningTasks()) {
                 this.finalize();
             }
             return;
