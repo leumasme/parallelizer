@@ -1,6 +1,6 @@
 {
     "name": "@leumasme/parallelizer",
-    "version": "2.1.0",
+    "version": "3.0.0",
     "description": "Run async functions in a pseudo-threadpool",
     "main": "build/index.js",
     "scripts": {
@@ -10,7 +10,10 @@
     },
     "author": "leumasme",
     "license": "ISC",
-    "repository": "github:leumasme/parallelizer",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/leumasme/parallelizer.git"
+    },
     "keywords": [
         "async",
         "await",
