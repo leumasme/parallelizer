@@ -1,6 +1,7 @@
 {
     "scripts": {
-        "start": "ts-node index.ts"
+        "start": "ts-node parallelizer.ts",
+        "start-queue": "ts-node queueParallelizer.ts"
     },
     "type": "module",
     "dependencies": {
