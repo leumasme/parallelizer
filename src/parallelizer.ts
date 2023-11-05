@@ -13,7 +13,7 @@ export class Parallelizer<R> extends ParallelizerBase<R, number> {
         return this.started < this.limit;
     }
     protected startNext() {
-        this.executeForElem(this.started++);
+        this.executeForElem(this.started);
     }
     protected finalize() {
         this.emit("finish", this.results);
