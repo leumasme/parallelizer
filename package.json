@@ -1,6 +1,6 @@
 {
     "name": "@leumasme/parallelizer",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "description": "Run async functions in a pseudo-threadpool",
     "main": "build/index.js",
     "scripts": {
