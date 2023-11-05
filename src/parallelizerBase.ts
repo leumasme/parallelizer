@@ -32,8 +32,9 @@ export abstract class ParallelizerBase<R, D>
     hasRunningTasks() {
         return this.getRunningTasksCount() > 0;
     }
-    waitForCompletion() {
-        return new Promise(resolve => {
+    waitForCompletion(): Promise<R[]> {
+        if (!this.hasRunningTasks) return Promise.resolve([]);
+        return new Promise<R[]>(resolve => {
             this.once("finish", resolve);
         })
     }
