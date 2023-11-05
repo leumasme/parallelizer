@@ -19,17 +19,17 @@ export abstract class ParallelizerBase<R, D>
         protected readonly keepData = true
     ) { super() }
 
-    start() {
+    start(): void {
         if (this.started > 0) throw new Error("Already started");
         this.startAsNeeded();
     }
-    stop() {
+    stop(): void {
         this.stopped = true;
     }
-    getRunningTasksCount() {
+    getRunningTasksCount(): number {
         return this.started - this.completed;
     }
-    hasRunningTasks() {
+    hasRunningTasks(): boolean {
         return this.getRunningTasksCount() > 0;
     }
     waitForCompletion(): Promise<R[]> {
